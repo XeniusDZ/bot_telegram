@@ -4,12 +4,13 @@ from urllib.parse import urlparse
 import json
 
 
-# request creates a socket client for connecting to a https server host and sends provided content.
-# returns server response.
-# ctx : used for encryption of content
-# client : used for making connection between client and server
-# client_secure : used for wrapping client
 def request(host, content):
+    """
+    request creates a socket client for connecting to a https server host and sends provided content.
+    :param host: our API domain
+    :param content: content in JSON
+    :return: response to our request
+    """
     ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_secure = ctx.wrap_socket(client)
@@ -28,12 +29,13 @@ def request(host, content):
 
     return response
 
-
-# post sends a http post request with the values provided and authentication auth key if provided.
-# returns response body
-#path : whats comes after domain name
-#host : domain name
 def post(url, values=None, auth=""):
+    """
+    :param url: track to m3o API
+    :param values: input that we wrote in telegram bot
+    :param auth: our authentification id
+    :return: response body
+    """
     if values is None:
         values = []
     path = urlparse(url).path
