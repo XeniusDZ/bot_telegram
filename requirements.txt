@@ -1,2 +1,1 @@
 aiogram==2.17.1
-Telegram bot that has answer to (almost) everything.
